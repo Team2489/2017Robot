@@ -62,6 +62,7 @@ public class Drivetrain extends Subsystem {
                     // Talons are updating the control loop state
                     return;
                 case VELOCITY_HEADING_CLOSED_LOOP:
+                	updateVelocityHeadingSetpoint();
                 	return;
                 case PATH_FOLLOWING_CONTROL:
                     updatePathFollower();
@@ -279,6 +280,16 @@ public class Drivetrain extends Subsystem {
 		driveWithVelocity(mVelocityHeadingSetpoint.getLeftSpeed() + dv / 2, mVelocityHeadingSetpoint.getRightSpeed() - dv / 2);
 	}
 	
+	public synchronized void setVelocityHeadingSetpoint(double forward_inches_per_sec, Rotation2d headingSetpoint) {
+		if (state != DrivetrainState.VELOCITY_HEADING_CLOSED_LOOP) {
+			configureForVelocityControl();
+			state = DrivetrainState.VELOCITY_HEADING_CLOSED_LOOP;
+			mVelocityHeadingPid.reset();
+		}
+		mVelocityHeadingSetpoint = new VelocityHeadingSetpoint(forward_inches_per_sec, forward_inches_per_sec, headingSetpoint);
+		updateVelocityHeadingSetpoint();
+	}
+
 	private double driveRotationsToInches(double rotations) {
 		return rotations * Constants.kDriveDiameterInches * Math.PI;
 	}

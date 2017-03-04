@@ -24,7 +24,7 @@ public class Constants {
 		public static final int kIntakeA = 2;
 		public static final int kIntakeB = 3;
 
-		// PID values
+		// PID values -- ALL MUST BE TUNED
 		public static final double kDriveVelocityKp = 2.8;
 		public static final double kDriveVelocityKi = 0.0001;
 		public static final double kDriveVelocityKd = 47.0;
@@ -88,6 +88,19 @@ public class Constants {
 		
 		
 		
-	    public static double kDriveWheelDiameterInches = 4.0;
-	    public static double kDriveDiameterInches = 25; // NEEDS TO BE MEASURED
+	    public static final double kDriveWheelDiameterInches = 4.0;
+	    public static final double kDriveDiameterInches = 25; // NEEDS TO BE MEASURED
+	    
+	    public static final String kVisionNetworkTableName = "vision_table";
+	    public static final double kMaxTrackerDistance = 180.0;
+	    public static final double kMaxGoalTrackAge = 0.3;
+	    public static final double kAutoAimPredictionTime = 0.5;
+	    	    
+	    // Pose of camera frame w.r.t. the robot frame - NEEDS TO BE MEASURED
+	    public static final double kCameraXOffset = 0.0;
+	    public static final double kCameraYOffset = 11.62;
+	    public static final double kCameraZOffset = 23.0;
+	    public static final double kCameraPitchAngleDegrees = 20.0;
+	    public static final double kCameraYawAngleDegrees = 0.0;
+	    public static final double kCenterOfTargetHeight = 28.0;
 }
